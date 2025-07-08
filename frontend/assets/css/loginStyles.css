@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    padding: 1rem;
+}
+
+form h2{
+    text-align: center;
+}
+
+.form-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-form{
+    background-color: antiquewhite;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+input{
+    padding: .5rem;
+    border:none;
+    border-radius: 2px;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.registerButton{
+    width: 30%;
+    padding: .5rem;
+    align-self: center;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.registerButton:active {
+    transform: scale(.98);
+}
+
+.err-message{
+    align-self: center;
+}
+
+.login-redirect{
+    align-self: center;
+}
+
+a {
+    text-decoration: none;
+}

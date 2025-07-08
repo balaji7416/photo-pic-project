@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feed</title>
+    <link rel="stylesheet" href="assets/css/Feedstyles.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <header>
+        <nav>
+          <button class="menu-options">☰</button>
+          <input type="search" placeholder="search user" class="search-bar" />
+          <span class="username">👤 User1234</span>
+        </nav>
+      </header>
+      <main>
+        <div class="container">
+          <div class="posts">
+            <div class="post-card">
+              <img src="" alt="image-post" class="image-post" />
+              <div class="caption">This is caption</div>
+            </div>
+            <div class="post-card">
+              <img src="" alt="image-post" class="image-post" />
+              <div class="caption">This is caption</div>
+            </div>
+            <div class="post-card">
+              <img src="" alt="image-post" class="image-post" />
+              <div class="caption">This is caption</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="add-post">+</button>
+
+        <!--upload popUP form-->
+        <div class="form-container hidden">
+          <form class="upload-form">
+            <h2>Express your post here</h2>
+            <label for="post-img">upload Post</label>
+            <input type="file" id="post-img" name="image" />
+            <label for="caption"></label>
+            <textarea id="caption" name="caption" placeholder="enter image caption"></textarea>
+            <div class="form-buttons">
+              <button type="submit" class="submit-post">Post</button>
+              <button type="button" class="cancel-post">Cancel</button>
+            </div>
+
+            <div class="status-message">status message shown here</div>
+          </form>
+        </div>
+
+        <!--side bar menu-->
+        <div class="sidebar">
+          <button class="toggle-menu-sidebar">☰</button>
+          <div class="sidebar-options">
+            <button class="add-post-option option">➕ Add Post</button>
+            <button class="toggle-dark option">🌙 Dark Mode</button>
+            <button class="userPosts option">📷 My Posts</button>
+            <button class="profile option">👤 profile</button>
+          </div>
+        </div>
+
+        <!--Profle popUp-->
+        <div class="profile-popUp hidden">
+          <div class="profile-options">
+            <div><strong>Username </strong><span class="profile-username">User1234</span></div>
+            <div><strong>Registered Email </strong><span class="profile-email">User1234@gmail.com</span></div>
+            <div class="Logout">Logout</div>
+            <div class="cancel-profile">Cancel</div>
+          </div>
+        </div>
+
+        <!--userPosts popUp-->
+        <div class="user-posts-container">
+          <div class="user-posts">
+
+          </div>
+        </div>
+      </main>
+      <footer></footer>
+    </div>
+
+    <script src="./assets/js/upload.js" ></script>
+    <script src="./assets/js/menuOptions.js"></script>
+    <script src="./assets/js/posts.js"></script>
+  </body>
+</html>

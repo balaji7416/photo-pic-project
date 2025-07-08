@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="assets/css/loginStyles.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <form action="" class="register-form">
+        <h2>Login</h2>
+        <div class="form-field">
+          <label for="login-username">Username</label>
+          <input type="text" placeholder="username" id="login-username" required />
+        </div>
+        <div class="form-field">
+          <label for="login-password">password</label>
+          <input
+            type="password"
+            placeholder="password"
+            id="login-password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="loginButton">submit</button>
+        <div class="err-message"></div>
+        <div class="login-redirect">
+          don't have account? <a href="register.html">Register</a>
+        </div>
+      </form>
+    </div>
+    <script src="assets/js/login.js"></script>
+  </body>
+</html>
