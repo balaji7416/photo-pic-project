@@ -7,11 +7,12 @@ const fetchHomePosts = async () => {
     const posts = await res.json();
     const HomeFeed = document.querySelector(".posts");
     HomeFeed.innerHTML = "";
-
+    const userId = localStorage.getItem("userId");
     posts.forEach((post) => {
       let postId = post._id;
       let img_url = post.imageUrl;
       let caption = post.caption;
+      const likedByUser = post.likes.includes(userId) ? true : false;
       const postCard = document.createElement("div");
       postCard.classList.add("post-card");
       postCard.innerHTML = `
@@ -19,7 +20,7 @@ const fetchHomePosts = async () => {
               <div class="caption">${caption}</div>
               <div class="comment-and-like">
               <div class="likes-field">
-              <button class="post-likes" data-postid=${postId}>❤️like</button>
+              <button class="post-likes ${likedByUser ? "on-like": ""}" data-postid=${postId} >❤️like</button>
               <span class="likes-count">${post.likes.length}</span>
               </div>
               <div class="comments-field">

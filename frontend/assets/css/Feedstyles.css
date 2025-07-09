@@ -197,6 +197,7 @@ header nav{
     border-top: 2px solid black;
     transform: translateX(-100%);
     transition: all .2s ease-in-out;
+    z-index: 10001;
 }
 
 .sidebar.show{
