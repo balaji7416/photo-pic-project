@@ -38,33 +38,50 @@ const fetchHomePosts = async () => {
 
 const getUserPosts = async () => {
   const userId = localStorage.getItem("userId");
+  if (!userId) {
+    alert("User not logged in.");
+    return;
+  }
   try {
     const res = await fetch(API_URL + `posts/user/${userId}`, {
       method: "GET",
     });
     const posts = await res.json();
+    if(res.ok) console.log("fetched user posts with status",res.status)
+    if(!res.ok) console.log("failed to fetch userPosts");
+
     const userFeed = document.querySelector(".user-posts");
     userFeed.innerHTML = "";
+    console.log(posts.length)
+    if (!posts.length) {
+      userFeed.innerHTML = "<div>No posts found.</div>";
+      return;
+    }
     posts.forEach((post) => {
-      const image_url = post.imageUrl;
-      const caption = post.caption;
-      const postcard = document.createElement("div");
-      postcard.classList.add("post-card");
-      postcard.innerHTML = `
-              <img src="${image_url}" alt="image-post" class="image-post" />
+      let postId = post._id;
+      let img_url = post.imageUrl;
+      let caption = post.caption;
+      const likedByUser = post.likes.includes(userId) ? true : false;
+      const postCard = document.createElement("div");
+      postCard.classList.add("post-card");
+      postCard.innerHTML = `
+              <img src="${img_url}" alt="image-post" class="image-post" />
               <div class="caption">${caption}</div>
-              <div id="comment-and-like">
-              <div id="likes-field">
-              <button id="post-likes">❤️like</button>
-              <span id="likes-count">${post.likes.length || 0}</span>
+              <div class="comment-and-like">
+              <div class="likes-field">
+              <button class="post-likes ${likedByUser ? "on-like": ""}" data-postid=${postId} >❤️like</button>
+              <span class="likes-count">${post.likes.length}</span>
               </div>
-              <div id="comments-field">
-              <button  id="post-comments">comment</button>
-              <span id="comments-count">${post.comments.length || 0}</span>
+              <div class="delete-btn-container">
+              <button class="user-post-delete-btn" data-postid=${postId} data-postelement=${postCard}>delete</button>
+              </div>
+              <div class="comments-field">
+              <button  class="post-comments">comment</button>
+              <span class="comments-count">${post.comments.length}</span>
               </div>
               </div>
             `;
-      userFeed.appendChild(postcard);
+      userFeed.appendChild(postCard);
     });
   } catch (err) {
     console.log("failed to fetch user Feed", err);
@@ -74,7 +91,7 @@ const getUserPosts = async () => {
 const deletePost = async (postId, postElement) => {
   const token = localStorage.getItem("token");
   try {
-    const res = await fetch(API_URL + `${postId}`, {
+    const res = await fetch(API_URL + `posts/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -84,7 +101,12 @@ const deletePost = async (postId, postElement) => {
     const data = await res.json();
     if (res.ok) {
       alert("Post deleted Successfully");
-      postElement.remove();
+      try{
+        postElement.remove();
+      } catch(err){
+        console.log("error:",err)
+      }
+      
     } else {
       alert("Failed to delete post: " + (data.message || "unknown error"));
     }
@@ -121,9 +143,9 @@ const toggleLikePost = async (postId, likeBtn) => {
   }
 };
 
-const UserPostsbtn = document.querySelector(".userPosts");
+const UserPostsbtn = document.querySelector(".user-posts-sidebar");
 UserPostsbtn.addEventListener("click", () => {
-  document.querySelector(".user-posts-container").classList.toggle("hidden");
+  document.querySelector(".user-posts-container").classList.add("show");
   getUserPosts();
 });
 
@@ -132,6 +154,17 @@ document.addEventListener("click", (e) => {
     const postId = e.target.dataset.postid;
     toggleLikePost(postId, e.target);
   }
+  if(e.target.classList.contains("user-post-delete-btn")){
+    const postId = e.target.dataset.postid;
+    const postElement = e.target.closest(".post-card");
+    deletePost(postId,postElement);
+  }
+  if(e.target.classList.contains("user-posts-cancel-btn")){
+    const userPosts = document.querySelector(".user-posts-container");
+    userPosts.classList.remove("show");
+  }
 });
+
+
 
 fetchHomePosts();
