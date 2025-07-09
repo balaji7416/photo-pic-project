@@ -69,7 +69,7 @@ const getUserPosts = async () => {
               <div class="caption">${caption}</div>
               <div class="comment-and-like">
               <div class="likes-field">
-              <button class="post-likes ${likedByUser ? "on-like": ""}" data-postid=${postId} >❤️like</button>
+              <button class="post-likes ${likedByUser ? "on-like": ""}" data-postid=${postId} data-isliked=${likedByUser}>❤️like</button>
               <span class="likes-count">${post.likes.length}</span>
               </div>
               <div class="delete-btn-container">
@@ -131,7 +131,7 @@ const toggleLikePost = async (postId, likeBtn) => {
       const likesElement = likeBtn.nextElementSibling;
       likesElement.textContent = data.likesCount;
 
-      if (data.message == "Liked Successfully")
+      if (data.action =="like")
         likeBtn.classList.add("on-like");
       else likeBtn.classList.remove("on-like");
     } else {

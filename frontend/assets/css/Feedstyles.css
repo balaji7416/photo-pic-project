@@ -5,12 +5,19 @@
 }
 
 body{
-    background-color: 	#121212;
+    background-color: #f4f7fa;
     font-family: "Segoe UI", "Roboto", sans-serif;
+    color: #333;
 }
 
 button{
-    cursor: pointer;
+    background-color: #4A90E2;
+    color: white;
+    font-weight: 500;
+    transition: all .4s ease;
+}
+button:hover{
+    background-color: #357ABD;
 }
 
 /*header styling*/
@@ -18,12 +25,15 @@ header nav{
     width: 100%;
     height: 4rem;
     padding: .5rem;
-    background-color: rgb(245, 239, 118);
+    background-color:#ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     position: fixed;
     z-index: 1000;
+    gap: 1rem;
 }
 
 .menu-options{
@@ -35,42 +45,52 @@ header nav{
 }
 .search-bar{
     flex: 1 1 auto;
-    border: none;
+    max-width: 500px;
+    border: 1px solid #ccc;
     border-radius: 5px;
     padding: 0.5rem;
     margin: auto .5rem;
+    transition: all .4s ease;
+}
+.search-bar:focus{
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74,144,226,0.5);
 }
 .username{
     flex: 0 0 auto;
     font-size: small;
     text-decoration: underline;
     cursor: pointer;
+    white-space: nowrap;
 }
 .user-name-field{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 /*main styling*/
 .container{
-    max-width: 1200px;
+    max-width: 1400px;
     padding: 1rem;
     margin: 0 auto;
     padding-top: 5rem;
 }
 .posts{
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: .5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    justify-content: center;
+    gap: 1rem;
 }
 .post-card{
-    background-color: #f0f8ff;
+    background-color: #fff;
     border-radius: 10px;
     padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 1rem 0;
+    box-shadow: 0 4px 1px rgba(0,0,0,0.1);
+}
+.post-card:hover{
+    transform: scale(1.01);
 }
 .image-post{
     width: 100%;
@@ -78,6 +98,7 @@ header nav{
     object-fit: cover;
 }
 .caption{
+    color: #666;
     padding: .5rem;
     font-size: 1rem;
     text-align: center;
@@ -103,7 +124,7 @@ header nav{
     gap: .5rem;
 }
 .comment-and-like button{
-    width: 6rem;
+    width: 5rem;
     padding: .5rem;
     border: none;
     border-radius: .5rem;
@@ -111,7 +132,7 @@ header nav{
 }
 .on-like{
     transform: scale(.95);
-    background-color: gold;
+    background-color: gold !important;
 }
 .add-post{
     width: 3.5rem;
@@ -130,7 +151,7 @@ header nav{
     transform: scale(.98);
 }
 
-/*user seaerch results*/
+/*user search results*/
 .user-search-results{
     position: absolute;
     top: 100%;
@@ -151,11 +172,10 @@ header nav{
     padding: .5rem;
     cursor: pointer;
     border-bottom: 1px solid #eee;
-    color: #c33f3f;
     transition: all .3s ease;
 }
 .user-search-results .user-search-option:hover{
-    background-color: #f5f5f5;
+    background-color: #f0f8ff;
 }
 .user-search-results.show{
     visibility: visible;
@@ -269,7 +289,7 @@ header nav{
 .sidebar-options{
     width: 100%;
     height: 100%;
-    padding: 1rem;
+    padding: .5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -282,7 +302,7 @@ header nav{
     text-align: center;
     background-color: rgb(161, 234, 175);
     width: 100%;
-    border-radius: .2rem;
+    border-radius: .5rem;
     margin-top: 1rem;
     transition: all .2s ease-in-out;
 }
@@ -370,7 +390,7 @@ header nav{
     max-width: 500px;
     width: 100%;
     height: 100vh;
-    max-width: 1200px;
+    max-width: 1700px;
 
     display: flex;
     align-items: center;
@@ -390,11 +410,13 @@ header nav{
 
 .user-posts{
     width: 100%;
-    max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
+
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    justify-content: center;
+
     gap: 1rem;
     padding: 2rem;
     border-radius: 1rem;
@@ -432,3 +454,27 @@ header nav{
     opacity: 1;
     visibility: visible;
 }
+
+/*for dark mode*/
+body.dark{
+    background-color: #1F1F1F;
+    color:#e0e0e0 ;
+}
+
+body.dark .post-card{
+    background-color: #2c2c2c;
+}
+body.dark .search-bar{
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #4a90e2;
+}
+body.dark nav{
+    background-color: rgba(0, 0, 0);
+}
+body.dark .sidebar{
+    background-color: rgb(35, 32, 32);
+}
+
+/*media queries*/
+

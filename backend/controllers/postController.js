@@ -86,6 +86,7 @@ const toggleLikePost = async (req, res) => {
     res.status(200).json({
       message: liked ? "Unliked Successfully" : "Liked Successfully",
       likesCount: post.likes.length,
+      action: liked ? "unlike" : "like",
     });
   } catch (err) {
     res
