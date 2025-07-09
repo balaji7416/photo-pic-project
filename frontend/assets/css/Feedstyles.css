@@ -130,6 +130,39 @@ header nav{
     transform: scale(.98);
 }
 
+/*user seaerch results*/
+.user-search-results{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1002;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: .5rem;
+    background-color: white;
+    visibility: hidden;
+    opacity: 0;
+}
+.user-search-results .user-search-option{
+    padding: .5rem;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    color: #c33f3f;
+    transition: all .3s ease;
+}
+.user-search-results .user-search-option:hover{
+    background-color: #f5f5f5;
+}
+.user-search-results.show{
+    visibility: visible;
+    opacity: 1;
+}
+
+
 /*upload form pop-up*/
 .hidden{
     display: none !important;
