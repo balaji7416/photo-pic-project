@@ -79,4 +79,26 @@ const toggleLikePost = async (req, res) => {
   }
 };
 
-export { createPost, getUserPosts, getAllPosts, toggleLikePost };
+const deletePost = async (req, res) => {
+  try{
+    const userId = req.user._id;
+    const {postId} = req.params;
+
+    const post = await Post.findById(postId);
+    if(!post) return res.status(404).json({message: "post not found"});
+
+    if(post.owner.toString() !== userId.toString())
+      return res.status(403).json({message: "you are not authorized to delete this post"});
+
+    const deletePost = await Post.findByIdAndDelete(postId);
+    res.status(200).json({
+      message: "post deleted successfully",
+      post: deletePost
+    });
+
+  } catch(err){
+    res.status(500).json({"error": err.message})
+  };
+}
+
+export { createPost, getUserPosts, getAllPosts, toggleLikePost, deletePost };
