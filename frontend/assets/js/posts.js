@@ -143,13 +143,18 @@ const toggleLikePost = async (postId, likeBtn) => {
   }
 };
 
-const UserPostsbtn = document.querySelector(".user-posts-sidebar");
-UserPostsbtn.addEventListener("click", () => {
-  document.querySelector(".user-posts-container").classList.add("show");
-  getUserPosts();
-});
+// const UserPostsbtn = document.querySelector(".user-posts-sidebar");
+// UserPostsbtn.addEventListener("click", () => {
+//   document.querySelector(".user-posts-container").classList.add("show");
+//   getUserPosts();
+// });
 
 document.addEventListener("click", (e) => {
+
+  if(e.target.classList.contains("user-posts-sidebar")){
+      document.querySelector(".user-posts-container").classList.add("show");
+      getUserPosts();
+  }
   if (e.target.classList.contains("post-likes")) {
     const postId = e.target.dataset.postid;
     toggleLikePost(postId, e.target);

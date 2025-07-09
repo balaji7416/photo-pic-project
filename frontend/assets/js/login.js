@@ -28,7 +28,7 @@ const loginUser = async () => {
   }
 };
 
-document.querySelector(".loginButton").addEventListener("click", (e) => {
+document.querySelector(".register-form").addEventListener("submit", (e) => {
   e.preventDefault()
   loginUser();
 });

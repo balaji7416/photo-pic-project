@@ -27,7 +27,7 @@ const registerUser = async (e) => {
 
 
 // even listeners for the buttons
-document.querySelector(".registerButton").addEventListener("click", (e) => {
+document.querySelector(".register-form").addEventListener("submit", (e) => {
   e.preventDefault()
   registerUser();
 });

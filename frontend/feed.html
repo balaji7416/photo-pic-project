@@ -12,7 +12,11 @@
         <nav>
           <button class="menu-options">☰</button>
           <input type="search" placeholder="search user" class="search-bar" />
-          <span class="username">👤 User1234</span>
+          <div class="user-name-field">
+            <span> 👤</span>
+            <span class="username"></span>
+          </div>
+          
         </nav>
       </header>
       <main>
@@ -28,19 +32,17 @@
         <button class="add-post">+</button>
 
         <!--upload popUP form-->
-        <div class="form-container hidden">
+        <div class="form-container">
           <form class="upload-form">
             <h2>Express your post here</h2>
-            <label for="post-img">upload Post</label>
-            <input type="file" id="post-img" name="image" />
-            <label for="caption"></label>
-            <textarea id="caption" name="caption" placeholder="enter image caption"></textarea>
+            <label for="upload-post-img">upload Post</label>
+            <input type="file" id="upload-post-img" name="image" />
+            <label for="upload-caption"></label>
+            <textarea id="upload-caption" name="caption" placeholder="enter image caption"></textarea>
             <div class="form-buttons">
               <button type="submit" class="submit-post">Post</button>
               <button type="button" class="cancel-post">Cancel</button>
             </div>
-
-            <div class="status-message">status message shown here</div>
           </form>
         </div>
 
@@ -56,12 +58,12 @@
         </div>
 
         <!--Profle popUp-->
-        <div class="profile-popUp hidden">
+        <div class="profile-popUp">
           <div class="profile-options">
             <div><strong>Username </strong><span class="profile-username">User1234</span></div>
             <div><strong>Registered Email </strong><span class="profile-email">User1234@gmail.com</span></div>
-            <div class="Logout">Logout</div>
-            <div class="cancel-profile">Cancel</div>
+            <button class="Logout">Logout</button>
+            <button class="cancel-profile">Cancel</button>
           </div>
         </div>
 
@@ -80,5 +82,6 @@
     <script src="./assets/js/upload.js" ></script>
     <script src="./assets/js/menuOptions.js"></script>
     <script src="./assets/js/posts.js"></script>
+    <script src="assets/js/user.js"></script>
   </body>
 </html>

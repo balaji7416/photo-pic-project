@@ -5,6 +5,18 @@ import User from "../models/user.js";
 
 const createPost = async (req, res) => {
   try {
+
+
+    console.log("Received file:", req.file);
+    console.log("Caption:", req.body.caption);
+
+    if (!req.file || !req.body.caption) {
+      return res.status(400).json({ message: "Missing image or caption" });
+    }
+
+    if(!req.user || !req.user._id){
+      return res.status(401).json({message: "unauthorized"});
+    }
     const { caption } = req.body;
     const filePath = req.file.path;
 
@@ -18,7 +30,10 @@ const createPost = async (req, res) => {
       owner: req.user._id,
     });
 
-    fs.unlinkSync(filePath);
+    fs.unlinkSync(filePath, (err) => {
+      if(err)
+      console.log("failed to delete local image", err.message);
+    });
     res.status(201).json(post);
   } catch (err) {
     res.status(500).json({ message: "Upload Failed", error: err.message });

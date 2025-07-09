@@ -1,10 +1,9 @@
 const API_URL = "http://localhost:5000/api/";
 
 const uploadPost = async () => {
-  const fileInput = document.querySelector("#post-img");
-  const caption = document.querySelector("#caption").value.trim();
+  const fileInput = document.querySelector("#upload-post-img");
+  const caption = document.querySelector("#upload-caption").value.trim();
   const token = localStorage.getItem("token");
-  console.log("token: ", token);
 
   if (fileInput.files.length === 0 || !caption) {
     alert("Please upload a image and add caption");
@@ -12,18 +11,11 @@ const uploadPost = async () => {
   }
 
   const file = fileInput.files[0];
-
   const formData = new FormData();
   formData.append("image", file);
   formData.append("caption", caption);
 
   try {
-    console.log(
-      "Trying to send post with caption:",
-      caption,
-      "and file:",
-      file
-    );
     const res = await fetch(API_URL + "posts", {
       method: "POST",
       headers: {
@@ -31,41 +23,59 @@ const uploadPost = async () => {
       },
       body: formData,
     });
-    console.log("uploadPost function completed");
-    let data;
-    try {
-      data = await res.json();
-    } catch (jsonErr) {
-      console.log("Failed to parse JSON:", jsonErr);
-      alert("Server error: Invalid response format.");
-      return;
-    }
 
-    console.log("Upload response:", res.ok);
-    console.log("status code", res.status);
-    console.log("Upload data:", data);
+    const data = await res.json();
+
     if (res.ok) {
       alert("Post uploaded successfully");
       document.querySelector(".upload-form").reset();
-      document.querySelector(".form-container").classList.add("hidden");
+      document.querySelector(".form-container").classList.remove("show");
+      appendNewPostToFeed(data);
+      fetchHomePosts();
     } else {
       alert("Upload failed: " + (data.message || "unknown error"));
     }
-    
   } catch (err) {
-    console.log("error while upload :", err);
-    alert("Something went wrong while uploading: " + err.message);
+    console.log("something went wronng: ", err);
   }
 };
-
 document.querySelector(".upload-form").addEventListener("submit", (e) => {
-  console.log("Form submit event fired");
   e.preventDefault();
-  console.log("Default prevented, calling uploadPost");
   uploadPost();
 });
-
-document.querySelector(".cancel-post").addEventListener("click", (e) => {
-  e.preventDefault();
-  document.querySelector(".form-container").classList.add("hidden");
+document.querySelector(".add-post-option").addEventListener("click", () => {
+  document.querySelector(".form-container").classList.add("show");
+})
+document.querySelector(".add-post").addEventListener("click", () => {
+  document.querySelector(".form-container").classList.add("show");
 });
+
+document.querySelector(".cancel-post").addEventListener("click", () => {
+  document.querySelector(".form-container").classList.remove("show");
+});
+
+const appendNewPostToFeed = (post) => {
+  const userId = localStorage.getItem("userId");
+  const likedByUser = post.likes.includes(userId);
+  const postCard = document.createElement("div");
+  postCard.classList.add("post-card");
+  postCard.innerHTML = `
+              <img src="${
+                post.image_url
+              }" alt="image-post" class="image-post" />
+              <div class="caption">${post.caption}</div>
+              <div class="comment-and-like">
+              <div class="likes-field">
+              <button class="post-likes ${
+                likedByUser ? "on-like" : ""
+              }" data-postid=${post.Id} >❤️like</button>
+              <span class="likes-count">${post.likes.length}</span>
+              </div>
+              <div class="comments-field">
+              <button  class="post-comments">comment</button>
+              <span class="comments-count">${post.comments.length}</span>
+              </div>
+              </div>
+            `;
+  document.querySelector(".posts").prepend(postCard);
+};
