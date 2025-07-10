@@ -9,7 +9,7 @@ const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("username");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     alert("logged out successfully");
   } catch (err) {
     alert("something went wrong...failed to logout");
