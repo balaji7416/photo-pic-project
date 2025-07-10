@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
 
 import userRouter from "./routes/userRoutes.js";
 import postRouter from "./routes/postRoutes.js";
@@ -23,7 +24,13 @@ app.use(cors({
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+const uploadPath = path.join(__dirname,"uploads");
+if(!fs.existsSync(uploadPath)){
+  fs.mkdirSync(uploadPath, {recursive:true});
+}
+
+app.use("/uploads", express.static(uploadPath));
 // this line is used to serve static files from the "uploads" directory, allowing users to access uploaded images via URLs like http://localhost:5000/uploads/image.jpg
 
 app.use("/api/auth", authRouter);
