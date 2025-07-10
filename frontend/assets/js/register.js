@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/";
+const API_URL = " https://photo-pic-project-backend.onrender.com/api/";
 
 const registerUser = async (e) => {
   const username = document.querySelector("#username").value.trim();
