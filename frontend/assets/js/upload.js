@@ -79,3 +79,14 @@ const appendNewPostToFeed = (post) => {
             `;
   document.querySelector(".posts").prepend(postCard);
 };
+
+const uploadForm = document.querySelector(".upload-form");
+const formContainer = document.querySelector(".form-container");
+
+document.addEventListener("click", (e) => {
+  if(!uploadForm.contains(e.target) && 
+     !e.target.classList.contains("add-post") &&
+     !e.target.classList.contains("add-post-option")){
+      formContainer.classList.remove("show");
+     }
+})

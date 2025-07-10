@@ -28,3 +28,12 @@ profileCancelBtn = document.querySelector(".cancel-profile");
 profileCancelBtn.addEventListener("click", () => {
     profilePopup.classList.remove("show");
 })
+
+const profileOptions = document.querySelector(".profile-options")
+document.addEventListener("click", (e) => {
+    if(!profileOptions.contains(e.target) && 
+        !e.target.classList.contains("profile") &&
+        !e.target.classList.contains("username")){
+        profilePopup.classList.remove("show");
+    }
+})
