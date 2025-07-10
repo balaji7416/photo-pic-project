@@ -16,7 +16,7 @@ const loginUser = async () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
       localStorage.setItem("email", data.email);
-      localStorage.setItem("userId",data._id);
+      localStorage.setItem("userId", data._id);
       window.location.href = "./feed.html";
       alert("Login successful! welcome " + data.username);
     } else {
@@ -28,7 +28,11 @@ const loginUser = async () => {
   }
 };
 
+
+
 document.querySelector(".register-form").addEventListener("submit", (e) => {
-  e.preventDefault()
+  e.preventDefault();
   loginUser();
 });
+
+

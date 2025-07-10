@@ -21,11 +21,11 @@ const fetchHomePosts = async () => {
               <div class="comment-and-like">
               <div class="likes-field">
               <button class="post-likes ${likedByUser ? "on-like": ""}" data-postid=${postId} >❤️like</button>
-              <span class="likes-count">${post.likes.length}</span>
+              <span class="likes-count"><strong>${post.likes.length}</strong></span>
               </div>
               <div class="comments-field">
               <button  class="post-comments">comment</button>
-              <span class="comments-count">${post.comments.length}</span>
+              <span class="comments-count"><strong>${post.comments.length}</strong></span>
               </div>
               </div>
             `;
@@ -77,7 +77,7 @@ const getUserPosts = async () => {
               </div>
               <div class="comments-field">
               <button  class="post-comments">comment</button>
-              <span class="comments-count">${post.comments.length}</span>
+              <span class="comments-count">${post.comments.length}span>
               </div>
               </div>
             `;
@@ -119,6 +119,10 @@ const deletePost = async (postId, postElement) => {
 const toggleLikePost = async (postId, likeBtn) => {
   try {
     const token = localStorage.getItem("token");
+    if(!token){
+      alert("login to like post");
+      return;
+    }
     const res = await fetch(API_URL + `posts/${postId}/like`, {
       method: "POST",
       headers: {

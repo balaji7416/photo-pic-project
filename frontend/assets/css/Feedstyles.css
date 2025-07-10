@@ -15,6 +15,7 @@ button{
     color: white;
     font-weight: 500;
     transition: all .4s ease;
+    cursor: pointer;
 }
 button:hover{
     background-color: #357ABD;
@@ -207,19 +208,37 @@ header nav{
     backdrop-filter: blur(5px);
     background-color: rgba(0,0,0,0.1);
 }
-
-.upload-form{
-    width: 100%;
-    max-width: 500px;
-    height: 40vh;
-    background-color: aliceblue;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.182);
+.post-upload-part{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    gap: 1rem;
+    width: 100%;
+}
+.post-caption-part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+.upload-form{
+    width: 100%;
+    max-width: 600px;
+    height: 50%;
+    max-height: 400px;
+    background-color: aliceblue;
+    box-shadow: 0 2x 20px rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     padding: 1rem;
     border-radius: 2rem;
+    border: 2px solid yellow;
+}
+.upload-form label{
+    font-weight: 600;
 }
 .form-container.show{
     visibility: visible;
@@ -229,13 +248,23 @@ header nav{
     padding: .5rem;
     border-radius: .3rem;
     width: 100%;
+    max-width: 400px;
+    height: 2rem;
+}
+.upload-form textarea::-webkit-scrollbar{
+    width: 0px;
+}
+.upload-form textarea:active{
+    border: 3px solid rgb(183, 230, 173);
 }
 .form-buttons{
     display: flex;
-    gap: 2rem;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 .form-buttons button{
-    padding: .2rem;
+    padding: .4rem;
     width: 5rem;
     border-radius: .3rem;
     border: none;
@@ -243,9 +272,11 @@ header nav{
 }
 .form-buttons .submit-post{
     background-color: lightgreen;
+    margin-left: 2rem;
 }
 .form-buttons .cancel-post{
     background-color: rgb(219, 89, 89);
+    margin-right: 2rem;
 }
 .post-img{
     padding: .5rem;
@@ -332,6 +363,8 @@ header nav{
 .profile-popUp{
     opacity: 0;
     visibility: hidden;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     position: fixed;
     top: 0;
     left: 0;
@@ -340,7 +373,7 @@ header nav{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1rem;
     backdrop-filter: blur(3px);
     transition: all .5s ease-in-out;
 }
@@ -353,26 +386,30 @@ header nav{
 
 .profile-options{
     width: 90%;
-    max-width: 400px;
+    max-width: 700px;
     padding: 1rem;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: aliceblue; 
-}
-.profile-options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-
+    gap: 2rem;
+    background-color: rgb(228, 237, 245); 
 }
 
 .profile-options div{
     display: flex;
     flex-direction: column;
     gap: .2rem;
+}
+.logout{
+    margin-right: 2rem;
+}
+.profile-buttons{
+    display: flex;
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 .profile-options button{
@@ -408,6 +445,12 @@ header nav{
     transition: all .8s ease-in-out;
 }
 
+.likes-count{
+    font-weight: bold;
+}
+.comments-count{
+    font-weight: bold;
+}
 .user-posts{
     width: 100%;
     max-height: 90vh;
@@ -474,6 +517,18 @@ body.dark nav{
 }
 body.dark .sidebar{
     background-color: rgb(35, 32, 32);
+}
+body.dark .user-search-results{
+    background-color: #2c2c2c;
+}
+body.dark .user-search-option:hover{
+    background-color: black
+}
+body.dark .upload-form{
+    background-color: #2c2c2c;
+}
+body.dark .profile-options{
+    background-color: #2c2c2c;
 }
 
 /*media queries*/

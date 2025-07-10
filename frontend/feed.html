@@ -37,10 +37,14 @@
         <div class="form-container">
           <form class="upload-form">
             <h2>Express your post here</h2>
-            <label for="upload-post-img">upload Post</label>
-            <input type="file" id="upload-post-img" name="image" />
-            <label for="upload-caption"></label>
-            <textarea id="upload-caption" name="caption" placeholder="enter image caption"></textarea>
+            <div class="post-upload-part">
+              <label for="">upload Post</label>
+              <input type="file" id="upload-post-img" name="image" />
+            </div>
+            <div class="post-caption-part">
+              <label for="">Image Caption</label>
+              <textarea id="upload-caption" name="caption" placeholder="enter image caption"></textarea>
+            </div>
             <div class="form-buttons">
               <button type="submit" class="submit-post">Post</button>
               <button type="button" class="cancel-post">Cancel</button>
@@ -59,13 +63,15 @@
           </div>
         </div>
 
-        <!--Profle popUp-->
+        <!--Profile popUp-->
         <div class="profile-popUp">
           <div class="profile-options">
             <div><strong>Username </strong><span class="profile-username">User1234</span></div>
             <div><strong>Registered Email </strong><span class="profile-email">User1234@gmail.com</span></div>
-            <button class="Logout">Logout</button>
+            <div class="profile-buttons">
+            <button class="logout">Logout</button>
             <button class="cancel-profile">Cancel</button>
+            </div>
           </div>
         </div>
 
@@ -86,5 +92,6 @@
     <script src="./assets/js/posts.js"></script>
     <script src="assets/js/user.js"></script>
     <script src="assets/js/search.js"></script>
+    <script src="assets/js/logout.js"></script>
   </body>
 </html>
