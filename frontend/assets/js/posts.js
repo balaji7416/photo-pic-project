@@ -77,7 +77,7 @@ const getUserPosts = async () => {
               </div>
               <div class="comments-field">
               <button  class="post-comments">comment</button>
-              <span class="comments-count">${post.comments.length}span>
+              <span class="comments-count">${post.comments.length}</span>
               </div>
               </div>
             `;
