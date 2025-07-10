@@ -13,7 +13,7 @@ const registerUser = async (e) => {
 
     const data = await res.json();
     if (res.ok) {
-      window.location.href = "../../login.html";
+      window.location.href = "../../index.html";
       alert("Registration successful! Please Log in.");
     } else {
       alert("Registration failed: " + (data.message || "unknown error"));
